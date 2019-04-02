@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Delete</title>
+</head>
+<body>
+    <ul id="list">
+        <li class="item">
+            <p contentEditable> 列表项一 </p>
+            <a href="javascript:;"> 删除 </a>
+        </li>
+        <li class="item">
+            <p contentEditable> 列表项二 </p>
+            <a href="javascript:;"> 删除 </a>
+        </li>
+        <li class="item">
+            <p contentEditable> 列表项三 </p>
+            <a href="javascript:;"> 删除 </a>
+        </li>
+        <li class="item">
+            <p contentEditable> 列表项四 </p>
+            <a href="javascript:;"> 删除 </a>
+        </li>
+        <li class="item">
+            <p contentEditable> 列表项五 </p>
+            <a href="javascript:;"> 删除 </a>
+        </li>
+        <a class="add" href="javascript:;"> 添加 </a>
+    </ul>
+</body>
+<script>
+!function () {
+    const list = document.getElementById("list")
+    const items = [].slice.call(list.getElementsByTagName("li"))
+    const addBtn = list.querySelector('.add')
+
+    const _getItemTpl = () => {
+        const tpl = `
+            <li class="item">
+                <p contentEditable> 增加的列表项 </p>
+                <a href="javascript:;"> 删除 </a>
+            </li>
+        `
+        const div = document.createElement('div')
+        div.innerHTML = tpl
+        const item = div.querySelector('.item')
+        const delBtn = item.getElementsByTagName("a")[0]
+        delBtn.addEventListener('click', () => { delItem(item) })
+        return item
+    }
+
+    const addItem = () => {
+        const item = _getItemTpl()
+        item.className = 'item fadeInUp'
+        list.insertBefore(item, addBtn)
+    }
+
+    const delItem = (item) => {
+        item.className = 'item fadeOutRight'
+        setTimeout(() => {
+            list.removeChild(item)
+        }, 400)
+    }
+
+    const initEvent = () => {
+        items.forEach(item => {
+            const delBtn = item.getElementsByTagName("a")[0]
+            delBtn.addEventListener('click', () => { delItem(item) })
+        })
+        addBtn.addEventListener('click', () => { addItem() })
+    }
+
+    initEvent()
+
+}()
+</script>
+</html>

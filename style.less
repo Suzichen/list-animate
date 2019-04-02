@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0
+}
+body {
+    background: #fff;
+    a {
+        color: #333;
+        text-decoration: none;
+    }
+    img {
+        border: none;
+    }
+    ul,li {
+        list-style: none;
+    }
+}
+@item-height: 60px;
+#list {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 10px 20px;
+    margin: 1rem;
+    .item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: @item-height;
+        padding: 0 2%;
+        border: 1px solid skyblue;
+        color: #333;
+        border-radius: 2px;
+        transition: all .8s linear;
+        p {
+            text-align: left;
+        }
+        a {
+            font-size: 13px;
+            border-radius: 5px;
+            height: 30px;
+            line-height: 30px;
+            margin-top: 5px;
+            background-color: skyblue;
+            color: #fff;
+            width: 60px;
+            text-align: center;
+        }
+    }
+    a.add {
+        display: block;
+        margin: 20px auto;
+        font-size: 13px;
+        border-radius: 5px;
+        height: 30px;
+        line-height: 30px;
+        margin-top: 5px;
+        background-color: skyblue;
+        color: #fff;
+        width: 60px;
+        text-align: center;
+    }
+}
+
+@keyframes fadeOutRight {
+    from {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+        transform: translate3d(100%, 0, 0);
+    }
+
+    to {
+        opacity: 0;
+        height: 0;
+    }
+}
+
+.fadeOutRight {
+    animation-name: fadeOutRight;
+    animation-duration: .8s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        z-index: 1;
+        height: 0;
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+    }
+
+    to {
+        height: @item-height;
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+  
+.fadeInUp {
+    animation-name: fadeInUp;
+    animation-duration: .4s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
